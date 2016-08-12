@@ -1,2 +1,6 @@
 *.pyc
 .idea/*
+Telegram-ID
+datasources/*.pyc
+*~
+last_item

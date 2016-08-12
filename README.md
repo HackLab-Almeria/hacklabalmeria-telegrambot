@@ -1,4 +1,7 @@
-# HackLabAlmería RSS and Feeds parser
+# HackLabAlmería RSS and Feeds parser bot
+
+This is a very simple Telegram bot for automagically feeding HackLab Almería
+Telegram channel and group with some of the community activity.
 
 ## Requirements:
 
@@ -6,6 +9,8 @@ It should work on a **Python 2.7** interpreter, along with the following depende
 
 * **beautifulsoup4**
 * **requests**
+* **python-dateutil**
+* **lxml==3.6.1**
 
 You can install them manually with `pip` or by using `pip install -r requirements.txt`.
 
@@ -16,7 +21,10 @@ Run `python parser.py` to get it working. It should be called regularly, using a
 You can set the `PARSE_ONLY_NEW` to `True` to parse only new items since the last time this script was executed, or to `False` to parse and send all items, including possible duplicates. 
 
 You may change the target *Channel* by modifying the `BOT_CHANNEL` variable using your public channel id - in example: `@ChannyMcChannelFace`.
+Remember to invite the bot to your channel as an __administrator__.
+
 You can also change the target *Group*, but you have to get the **secret group id**. To do that, you can invite the `my_id` bot to the desired group and then ask him `/my_id`. The result will be the group id.
+You should invite the bot as a group's member.
 
 ## How does it work?
 
