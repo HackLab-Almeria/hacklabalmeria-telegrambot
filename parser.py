@@ -68,11 +68,11 @@ for message in sortedMessages:
     response = botHttpRequest.request(url=url, method='POST', data=postBody)
 
     if response.status_code == 400:
-        print("Error (" + response.text + ") on message: \n"+message.text+"\n\n")
+        print(u"Error (%s) on message: \n%s\n\n" % (response.text, message.text))
     else:
         # Only save date from the last message that was sent correctly
         lastParsedDate = message.date
-        print(str(response.status_code) + ": " + response.text)
+        print(str(response.status_code) + u": " + response.text)
 
 if lastParsedDate:
     lastItemFile.write(lastParsedDate.isoformat())
