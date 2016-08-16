@@ -2,3 +2,4 @@ beautifulsoup4
 requests
 python-dateutil
 lxml==3.6.1
+pytz==2016.6.1

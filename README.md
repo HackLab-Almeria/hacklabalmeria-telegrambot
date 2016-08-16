@@ -11,6 +11,7 @@ It should work on a **Python 2.7** interpreter, along with the following depende
 * **requests**
 * **python-dateutil**
 * **lxml==3.6.1**
+* **pytz==2016.6.1**
 
 You can install them manually with `pip` or by using `pip install -r requirements.txt`.
 
