@@ -2,22 +2,25 @@
 
 import os
 import requests
-from dateutil import parser
+import time
+from datetime import datetime
+import pytz
 
 from datasources.sources import AtomSource, RssSource, TwitterSource
 
 # Contants
-BOT_ID = 'ADD_BOT_ID_HERE'
+BOT_ID = 'YOUR-BOT-ID-HERE'
 BOT_URL = u"http://api.telegram.org/bot%s/sendMessage" % BOT_ID
-BOT_CHANNEL = "@HackLabAlmeriaNoticias"
-GROUP_ID = '-137038280'
+BOT_CHANNEL = "@HackLabAlmeria_novedades"
+GROUP_ID = '-158329500'
 LAST_ITEM_PATH = 'last_item'
 
 # Config
 PARSE_ONLY_NEW = True
 SOURCES = [
-    AtomSource('http://hacklabalmeria.net/atom.xml'),
-    RssSource('https://foro.hacklabalmeria.net/c/observatorio.rss'),
+#    AtomSource('http://hacklabalmeria.net/atom.xml'),
+#    RssSource('https://foro.hacklabalmeria.net/c/observatorio.rss'),
+    RssSource('https://foro.hacklabalmeria.net/latest.rss'),
     TwitterSource('https://twitrss.me/twitter_user_to_rss/?user=hacklabal')
 ]
 
@@ -32,7 +35,8 @@ if PARSE_ONLY_NEW:
     if lastItemFile:
         contents = lastItemFile.readline()
         if contents:
-            lastParsedDate = parser.parse(contents)
+            lastParsedDate = datetime.fromtimestamp(float(contents))
+            lastParsedDate = lastParsedDate.replace(tzinfo=pytz.UTC)
         lastItemFile.seek(0)
     else:
         lastItemFile = open(LAST_ITEM_PATH, 'w')
@@ -68,13 +72,13 @@ for message in sortedMessages:
     response = botHttpRequest.request(url=url, method='POST', data=postBody)
 
     if response.status_code == 400:
-        print("Error (" + response.text + ") on message: \n"+message.text+"\n\n")
+        print(u"Error (%s) on message: \n%s\n\n" % (response.text, message.text))
     else:
         # Only save date from the last message that was sent correctly
         lastParsedDate = message.date
-        print(str(response.status_code) + ": " + response.text)
+        print(str(response.status_code) + u": " + response.text)
 
 if lastParsedDate:
-    lastItemFile.write(lastParsedDate.isoformat())
+    lastItemFile.write(str(time.mktime(lastParsedDate.utctimetuple())))
 
 lastItemFile.close()

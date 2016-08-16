@@ -45,17 +45,17 @@ class AtomAdapter(Adapter):
 
         fechaRegex = re.findall(r'<p>Fecha: (.*?)</p>\s<p>Hora: (.*?)</p>', item.content.string)
         if len(fechaRegex) > 0 and len(fechaRegex[0]) > 1:
-            fecha = self.cleanTag(fechaRegex[0][0] + ", " + fechaRegex[0][1], removeAllTags=True)
+            fecha = u'' + self.cleanTag(fechaRegex[0][0] + u", " + fechaRegex[0][1], removeAllTags=True)
 
         url = item.link['href'].encode('utf8')
 
-        text = '<b>Evento:</b> %s\n' % (title)
+        text = u'<b>Evento:</b> %s\n' % (title)
 
         if lugar:
-            text += '<b>Lugar:</b> %s\n' % lugar
+            text += u'<b>Lugar:</b> %s\n' % lugar
 
         if fecha:
-            text += '<b>Fecha y hora:</b> %s\n' % fecha
+            text += u'<b>Fecha y hora:</b> %s\n' % fecha
 
         text += u'<b>Más info:</b> <a href="%s">%s</a> ' % (url, url)
 
