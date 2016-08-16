@@ -46,7 +46,7 @@ class AtomSource(Source):
         response = http.request('GET', url)
 
         if response.status_code == 200 and response.text:
-            parser = BeautifulSoup(response.text, 'lxml-xml', from_encoding='utf-8')
+            parser = BeautifulSoup(response.text, 'lxml-xml')
             entries = parser.feed.find_all('entry')
 
             items = []
@@ -68,7 +68,7 @@ class RssSource(Source):
         response = http.request('GET', url)
 
         if response.status_code == 200 and response.text:
-            parser = BeautifulSoup(response.text, 'lxml-xml', from_encoding='utf-8')
+            parser = BeautifulSoup(response.text, 'lxml-xml')
             entries = parser.find_all('item')
 
             items = []
@@ -90,7 +90,7 @@ class TwitterSource(Source):
         response = http.request('GET', url)
 
         if response.status_code == 200 and response.text:
-            parser = BeautifulSoup(response.text, 'lxml-xml', from_encoding='utf-8')
+            parser = BeautifulSoup(response.text, 'lxml-xml')
             entries = parser.find_all('item')
 
             items = []
