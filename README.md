@@ -17,8 +17,6 @@ You can install them manually with `pip` or by using `pip install -r requirement
 ## Usage:
 
 Run `python parser.py` to get it working. It should be called regularly, using a CRON or some service.
-If your input streams use UNICODE characters probably you'll need to set the
-LANG variable as in `LANG=es_ES.utf8 python parser.py`.
 
 You can set the `PARSE_ONLY_NEW` to `True` to parse only new items since the last time this script was executed, or to `False` to parse and send all items, including possible duplicates. 
 
