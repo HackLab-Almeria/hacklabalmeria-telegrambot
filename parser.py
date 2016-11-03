@@ -8,7 +8,7 @@ import pytz
 
 from datasources.sources import AtomSource, RssSource, TwitterSource
 
-# Contants
+# Constants
 BOT_ID = 'YOUR-BOT-ID-HERE'
 BOT_URL = u"http://api.telegram.org/bot%s/sendMessage" % BOT_ID
 BOT_CHANNEL = "@HackLabAlmeria_novedades"
