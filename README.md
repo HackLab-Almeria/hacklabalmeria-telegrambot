@@ -13,7 +13,7 @@ It should work on a **Python 2.7** interpreter, along with the following depende
 * **lxml==3.6.1**
 * **pytz==2016.6.1**
 
-You can install them manually with `pip` or by using `pip install -r requirements.txt`.
+You can install them manually with `pip` or by using `sudo -H pip install -r requirements.txt`.
 
 ## Usage:
 
