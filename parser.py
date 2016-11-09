@@ -78,7 +78,8 @@ for message in sortedMessages:
         lastParsedDate = message.date
         print(str(response.status_code) + u": " + response.text)
 
-if lastParsedDate:
-    lastItemFile.write(str(time.mktime(lastParsedDate.utctimetuple())))
+if lastItemFile:
+    if lastParsedDate:
+        lastItemFile.write(str(time.mktime(lastParsedDate.utctimetuple())))
 
-lastItemFile.close()
+    lastItemFile.close()
